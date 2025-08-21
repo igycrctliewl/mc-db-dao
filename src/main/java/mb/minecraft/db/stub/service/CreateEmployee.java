@@ -1,10 +1,10 @@
-package mc.minecraft.db.stub.service;
+package mb.minecraft.db.stub.service;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
 import jakarta.persistence.EntityManager;
-import mc.minecraft.db.entity.Employee;
+import mb.minecraft.db.entity.Village;
 
 /*
  * This is really just a testing stub to confirm the database configuration
@@ -15,17 +15,15 @@ public class CreateEmployee {
 
 	public static void main(String[] args) {
 
-		context = new AnnotationConfigApplicationContext( "mc.minecraft.db" );
+		context = new AnnotationConfigApplicationContext( "mb.minecraft.db" );
 		EntityManager em = context.getBean( EntityManager.class );
 		em.getTransaction().begin();
 
-		Employee employee = new Employee();
-		employee.setEid(20444);
-		employee.setEmployeeName("Mikebro");
-		employee.setSalary(62500);
-		employee.setDeg("Programmer");
+		Village village = new Village();
+		village.setId( 4 );
+		village.setName( "Deep Water Cove" );
 
-		em.persist(employee);
+		em.persist(village);
 		em.getTransaction().commit();
 
 		context.close();
