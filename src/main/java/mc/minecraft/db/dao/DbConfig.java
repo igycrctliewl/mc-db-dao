@@ -1,4 +1,4 @@
-package com.mikebro.jpatutorial.dao;
+package mc.minecraft.db.dao;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,9 +12,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 /*
- * This started from a tutorials-point(less) JPA tutorial, which didn't really help
- * I found much more help from this guy:
- * Thanks https://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
+ * Create the EntityManager bean for the application
  */
 @Component
 public class DbConfig {
@@ -23,8 +21,8 @@ public class DbConfig {
 	public EntityManager main(String[] args) {
 		Map<String,Object> properties = new HashMap<>();
 //		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:derby://ibookg4:1527/tutorialdb3;create=true" );
-		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:derby:C:/Users/mikebro/db/tutorialdb;create=true" );
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "tutorial-db", properties );
+//		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:derby:tutorialdb;create=true" );
+		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "mc-db", properties );
 		return emfactory.createEntityManager();
 	}
 }

@@ -1,4 +1,4 @@
-package com.mikebro.jpatutorial.entity;
+package mc.minecraft.db.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

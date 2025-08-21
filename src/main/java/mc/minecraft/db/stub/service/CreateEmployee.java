@@ -1,16 +1,13 @@
-package com.mikebro.jpatutorial.service;
+package mc.minecraft.db.stub.service;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
-import com.mikebro.jpatutorial.entity.Employee;
-
 import jakarta.persistence.EntityManager;
+import mc.minecraft.db.entity.Employee;
 
 /*
- * This started from a tutorials-point(less) JPA tutorial, which didn't really help
- * I found much more help from this guy:
- * Thanks https://www.vogella.com/tutorials/JavaPersistenceAPI/article.html
+ * This is really just a testing stub to confirm the database configuration
  */
 public class CreateEmployee {
 
@@ -18,7 +15,7 @@ public class CreateEmployee {
 
 	public static void main(String[] args) {
 
-		context = new AnnotationConfigApplicationContext( "com.mikebro.jpatutorial" );
+		context = new AnnotationConfigApplicationContext( "mc.minecraft.db" );
 		EntityManager em = context.getBean( EntityManager.class );
 		em.getTransaction().begin();
 
