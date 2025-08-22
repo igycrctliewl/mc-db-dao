@@ -1,4 +1,4 @@
-package com.mikebro.jpatutorial;
+package mb.minecraft.db.dao.test;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

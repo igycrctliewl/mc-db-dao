@@ -1,7 +1,5 @@
 package mb.minecraft.db.entity;
 
-import static mb.minecraft.library.ObjectStringHelper.COMMA_SEPARATOR;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,15 +28,11 @@ public class Village extends mb.minecraft.model.Village {
 	private String name;
 
 
-	@Override
-	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append( super.toString() ).append( "( " )
-			.append( "id=" ).append( this.getId() )
-			.append( COMMA_SEPARATOR )
-			.append( "name=" ).append( this.getName() )
-			.append( " )");
-		return sb.toString();
-	}
+//	@Override
+//	public String toString() {
+//		StringBuilder sb = new StringBuilder();
+//		sb.append( super.toString() );
+//		return sb.toString();
+//	}
 
 }
