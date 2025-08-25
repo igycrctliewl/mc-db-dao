@@ -2,17 +2,22 @@ package mb.minecraft.db.dao.impl;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import mb.minecraft.dao.VillageDao;
+import mb.minecraft.db.stub.service.SelectAllVillage;
 import mb.minecraft.model.Village;
 
 
 @Repository
 public class VillageDaoDbImpl implements VillageDao {
+
+	private static final Logger logger = LogManager.getLogger( VillageDaoDbImpl.class );
 
 	@Autowired
 	private EntityManager em;
@@ -20,18 +25,22 @@ public class VillageDaoDbImpl implements VillageDao {
 
 	@Override
 	public void destroy() throws Exception {
-		// TODO Auto-generated method stub
-
+		logger.info( ">>>> VillageDaoDbImpl.destroy()" );
 	}
 
 	@Override
-	public boolean deleteOne(Village arg0) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteOne( Village village ) {
+		em.getTransaction().begin();
+		Query q = em.createNativeQuery( "DELETE FROM VILLAGE WHERE ID = ?" );
+		q.setParameter( 1, village.getId() );
+		int numRows = q.executeUpdate();
+		em.getTransaction().commit();
+		return numRows > 0;
 	}
 
 	@Override
 	public Village insertOne( Village village ) {
+		// TODO catch  java.sql.SQLIntegrityConstraintViolationException
 		em.getTransaction().begin();
 		em.persist( village );
 		em.getTransaction().commit();
@@ -46,19 +55,19 @@ public class VillageDaoDbImpl implements VillageDao {
 	}
 
 	@Override
-	public Village selectOneById(int arg0) {
+	public Village selectOneById( int villageId ) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Village selectOneByName(String arg0) {
+	public Village selectOneByName( String villageName ) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Village update(Village arg0) {
+	public Village update( Village village ) {
 		// TODO Auto-generated method stub
 		return null;
 	}

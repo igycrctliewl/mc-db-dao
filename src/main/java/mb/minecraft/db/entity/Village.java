@@ -24,7 +24,7 @@ public class Village extends mb.minecraft.model.Village {
 	@Column( name = "ID" )
 	private Integer id;
 
-	@Column( name = "NAME" )
+	@Column( name = "NAME", unique = true )
 	private String name;
 
 
