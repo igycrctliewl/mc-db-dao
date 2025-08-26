@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
-
+import jakarta.persistence.RollbackException;
 import mb.minecraft.dao.VillageDao;
 import mb.minecraft.model.Village;
 
@@ -32,7 +32,7 @@ public class VillageDaoDbImpl implements VillageDao {
 	@Override
 	public boolean deleteOne( Village village ) {
 		em.getTransaction().begin();
-		Query q = em.createNativeQuery( "DELETE FROM VILLAGE WHERE ID = ?" );
+		Query q = em.createNativeQuery( "DELETE FROM VILLAGE WHERE ID = ?1" );
 		q.setParameter( 1, village.getId() );
 		int numRows = q.executeUpdate();
 		em.getTransaction().commit();
@@ -41,10 +41,14 @@ public class VillageDaoDbImpl implements VillageDao {
 
 	@Override
 	public Village insertOne( Village village ) {
-		// TODO catch  java.sql.SQLIntegrityConstraintViolationException
-		em.getTransaction().begin();
-		em.persist( village );
-		em.getTransaction().commit();
+		try {
+			em.getTransaction().begin();
+			em.persist( village );
+			em.getTransaction().commit();
+		} catch ( RollbackException rx ) {
+			logger.error( rx );
+			return null;
+		}
 		return village;
 	}
 
@@ -69,14 +73,29 @@ public class VillageDaoDbImpl implements VillageDao {
 
 	@Override
 	public Village selectOneByName( String villageName ) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createQuery( "select  v from Village v where v.name = ?1" );
+		q.setParameter( 1, villageName );
+		try {
+			Village v = (Village) q.getSingleResult();
+			return v;
+		} catch( NoResultException nre ) {
+			return null;
+		}
 	}
 
 	@Override
 	public Village update( Village village ) {
-		// TODO Auto-generated method stub
-		return null;
+		em.clear();
+		em.getTransaction().begin();
+		Query q = em.createNativeQuery( "UPDATE VILLAGE SET NAME = ?1 WHERE ID = ?2" );
+		q.setParameter( 1, village.getName() );
+		q.setParameter( 2, village.getId() );
+		int numRows = q.executeUpdate();
+		em.getTransaction().commit();
+		if( numRows > 0 )
+			return village;
+		else
+			return null;
 	}
 
 }
