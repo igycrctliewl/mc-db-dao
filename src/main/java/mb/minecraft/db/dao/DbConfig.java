@@ -20,7 +20,8 @@ public class DbConfig {
 	@Bean
 	public EntityManager entityManager() {
 		Map<String,Object> properties = new HashMap<>();
-		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:derby:C:/Users/mikebro/db/mcdb;create=true" );
+		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:derby://iBookG4:1527/mcdb;create=true" );
+//		properties.put(PersistenceUnitProperties.JDBC_URL, "jdbc:derby:C:/Users/mikebro/db/mcdb;create=true" );
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "mc-db", properties );
 		return emfactory.createEntityManager();
 	}

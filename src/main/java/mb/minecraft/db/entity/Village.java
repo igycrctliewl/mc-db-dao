@@ -20,7 +20,7 @@ public class Village extends mb.minecraft.model.Village {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue( strategy=GenerationType.AUTO, generator="VILLAGE_ID_SEQ" )
 	@Column( name = "ID" )
 	private Integer id;
 

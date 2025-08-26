@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.Query;
+
 import mb.minecraft.dao.VillageDao;
-import mb.minecraft.db.stub.service.SelectAllVillage;
 import mb.minecraft.model.Village;
 
 
@@ -56,8 +57,14 @@ public class VillageDaoDbImpl implements VillageDao {
 
 	@Override
 	public Village selectOneById( int villageId ) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createQuery( "select  v from Village v where v.id = ?1" );
+		q.setParameter( 1, villageId );
+		try {
+			Village v = (Village) q.getSingleResult();
+			return v;
+		} catch( NoResultException nre ) {
+			return null;
+		}
 	}
 
 	@Override
