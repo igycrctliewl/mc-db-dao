@@ -1,4 +1,4 @@
-package mb.minecraft.db.stub.service;
+package mb.minecraft.db.stub.village;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,11 +11,11 @@ import mb.minecraft.model.Village;
 /*
  * This is really just a testing stub to confirm the database configuration
  */
-public class RenameVillage {
+public class RenameVillageFail {
 
 	public static AbstractApplicationContext context;
 
-	private static final Logger logger = LogManager.getLogger( RenameVillage.class );
+	private static final Logger logger = LogManager.getLogger( RenameVillageFail.class );
 
 	public static void main(String[] args) {
 
@@ -25,6 +25,7 @@ public class RenameVillage {
 		Village village = villageDao.selectOneByName( "Heart" );
 		logger.info( "Returned: {}", village );
 
+		village.setId( 999 );
 		village.setName( "Heart o the Desert");
 		village = villageDao.update( village );
 

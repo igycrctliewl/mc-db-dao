@@ -10,6 +10,7 @@
 -->
 
       <class>mb.minecraft.db.entity.Village</class>
+      <class>mb.minecraft.db.entity.VillagerType</class>
 
       <properties>
          <property name="jakarta.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>

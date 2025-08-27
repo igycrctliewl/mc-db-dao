@@ -61,7 +61,7 @@ public class VillageDaoDbImpl implements VillageDao {
 
 	@Override
 	public Village selectOneById( int villageId ) {
-		Query q = em.createQuery( "select  v from Village v where v.id = ?1" );
+		Query q = em.createQuery( "select v from Village v where v.id = ?1" );
 		q.setParameter( 1, villageId );
 		try {
 			Village v = (Village) q.getSingleResult();
