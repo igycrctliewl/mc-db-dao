@@ -9,6 +9,7 @@
       <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 -->
 
+      <class>mb.minecraft.db.entity.Item</class>
       <class>mb.minecraft.db.entity.Village</class>
       <class>mb.minecraft.db.entity.VillagerType</class>
 
